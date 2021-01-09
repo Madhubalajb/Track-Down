@@ -1,0 +1,42 @@
+body {
+    .card {
+        width: fit-content;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 250px;
+        i {
+            font-size: 2rem;
+            color: blue;
+            cursor: pointer;
+        }
+    }
+    .modal {
+        .modal-body {
+            h6 {
+                padding: 10px;
+                margin-top: 10px;
+                span {
+                    width: fit-content;
+                    border-radius: 50px;
+                    background-color: rgb(57, 57, 218);
+                    padding: 5px 12px;
+                    color: white;
+                }
+            }
+            .btn {
+                font-size: larger;
+                font-weight: bold;
+                margin: 10px;
+            }
+            .months {
+                .form-check {
+                    margin: 8px;
+                }
+            }
+        }
+    }
+    .days {
+        display: inline-block;
+    }
+}
