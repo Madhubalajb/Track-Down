@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Container, Card } from 'react-bootstrap'
+import React, { useState, useEffect } from 'react'
+import { Container, Card, Row, Col} from 'react-bootstrap'
 import HabitForm from './HabitForm'
 import TrackSheet from './TrackSheet'
 import habitService from '../services/habit_services'
@@ -22,6 +22,12 @@ const Home = () => {
     const [show, setShow] = useState(false)
     const [habitName, setHabitName] = useState('') 
     const [habitMonth, setHabitMonth] = useState('')
+    const [habit_activity, setHabitActivity] = useState([])
+
+    useEffect(() => {
+        habitService.getData()
+        .then(data => setHabitActivity(data))
+    })
 
     const handleClose = () => setShow(false)
     const handleShow = () => setShow(true)
@@ -62,18 +68,22 @@ const Home = () => {
 
     return (
         <Container>
-            <center>
-                <Card>
-                    <Card.Body>
-                        <p>Add a new habit to track</p>
-                        <center>
-                            <i className="material-icons" title="Add Habit" onClick={handleShow}>add_circle</i>
-                        </center>
-                    </Card.Body>
-                </Card>
-                <HabitForm show={show} close={handleClose} habit_name={handleHabitName} habit_month={handleHabitMonth} submit={submitHabit}/>
-                <TrackSheet monthName={habitMonth} daysInMonth={daysInMonth} />
-            </center>
+            <Row>
+                <Col>
+                    <Card>
+                        <Card.Body>
+                            <p>Add a new habit to track</p>
+                            <center>
+                                <i className="material-icons" title="Add Habit" onClick={handleShow}>add_circle</i>
+                            </center>
+                        </Card.Body>
+                    </Card>
+                    <HabitForm show={show} close={handleClose} habit_name={handleHabitName} habit_month={handleHabitMonth} submit={submitHabit}/>
+                </Col>
+                <Col>
+                    <TrackSheet daysInMonth={daysInMonth} habit_activity={habit_activity}/>
+                </Col>
+            </Row>
         </Container>
     )
 }

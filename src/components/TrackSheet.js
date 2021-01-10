@@ -1,32 +1,42 @@
-import React, {useState} from 'react'
-import {Card, Container, Button} from 'react-bootstrap'
+import React from 'react'
+import {Card, Col} from 'react-bootstrap'
+import habitService from '../services/habit_services'
 
 const TrackSheet = (props) => {
-    let days = []
-    
-    for (let i = 1; i <= props.daysInMonth[props.monthName]; i++) {
-        days.push(<Button className="dayOfMonth" key={i} id={i}>{i}</Button>)
-    }
-
-    return (
-        <Container>
+    const showHabitActivity = () => props.habit_activity.map((habit, index) => {
+        return (
             <Card>
-                <center><h5>{props.monthName}</h5></center>
-                <div className="days">
+                <h5>{habit.habit_name} - {habit.habit_month}</h5>
+                <Card.Body>
                     {
-                        days.map((day, index) => {
-                            if (index / 7 === 0) {
-                                
-                            }
+                        habit.habit_track.map((day, index) => {
                             return (
-                                <span key={index}>{day}</span>
+                                <input type="button" value={index + 1} id={index + 1}/>
                             )
                         })
                     }
-                </div>
+                </Card.Body>
             </Card>
-        </Container>
-    )
+        )
+    })
+
+    if(props.habit_activity.length === 0) {
+        return (
+            <Col>
+                <Card>
+                    <h5>Sample - January</h5>
+                </Card>
+            </Col>
+        )
+    }
+    else {
+        return (
+            <Col>
+                {showHabitActivity()}
+            </Col>
+        )
+    }
+
 }
 
 export default TrackSheet
