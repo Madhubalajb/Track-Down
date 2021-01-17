@@ -66,9 +66,9 @@ const Home = () => {
     }
 
     return (
-        <Container>
+        <Container fluid>
             <Row>
-                <Col>
+                <Col sm={4}>
                     <Card>
                         <Card.Body>
                             <p>Add a new habit to track</p>
@@ -79,7 +79,7 @@ const Home = () => {
                     </Card>
                     <HabitForm show={show} close={handleClose} habit_name={handleHabitName} habit_month={handleHabitMonth} submit={submitHabit}/>
                 </Col>
-                <Col>
+                <Col sm={8}>
                     <TrackSheet daysInMonth={daysInMonth} habit_activity={habit_activity}/>
                 </Col>
             </Row>

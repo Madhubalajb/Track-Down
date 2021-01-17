@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import {Card, Col, Button} from 'react-bootstrap'
+import {Card, Button} from 'react-bootstrap'
 import habitService from '../services/habit_services'
 
 const TrackSheet = (props) => {
@@ -29,17 +29,22 @@ const TrackSheet = (props) => {
     const showHabitActivity = () => props.habit_activity.map((habit, index) => {  
         return (
             <Card>
-                <h5>{habit.habit_name} - {habit.habit_month}</h5>
-                <Card.Body>
-                    <i className="material-icons" title="Edit your activities" onClick={() => handleVisibility(habit.habit_track)}>edit</i>
+                <Card.Body className="activity_card">
+                    <Card.Title>{habit.habit_name}</Card.Title>
+                    <Card.Subtitle>{habit.habit_month}</Card.Subtitle>
+                    <div className="days">
+                        <i className="material-icons" title="Edit your activities" onClick={() => handleVisibility(habit.habit_track)}>edit</i>
                     {
                         habit.habit_track.map((day, index) => {
                             return (
-                                <input type="button" value={index + 1} id={index + 1} onClick={() => handleActivity(index + 1)}/>
+                                <Button id={index + 1} style={{ 'background-color': day === true ? 'blue' : '#FFEB3B'}} onClick={() => handleActivity(index)}>{index + 1}</Button>
                             )
                         })
                     }
-                    <Button ref={saveBtnRef} style={{visibility: 'hidden'}} onClick={() => saveChanges(habit.id)}>Save</Button>
+                    </div>
+                    <center>
+                        <Button ref={saveBtnRef} style={{visibility: 'hidden'}} className='save' onClick={() => saveChanges(habit.id)}>Save</Button>
+                    </center>
                 </Card.Body>
             </Card>
         )
@@ -48,7 +53,8 @@ const TrackSheet = (props) => {
     if(props.habit_activity.length === 0) {
         return (
             <Card>
-                <h5>Sample - January</h5>
+                <Card.Title>Sample</Card.Title>
+                <Card.Subtitle>January</Card.Subtitle>
             </Card>
         )
     }
