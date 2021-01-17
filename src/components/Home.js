@@ -59,7 +59,6 @@ const Home = () => {
                 habit_month: habitMonth,
                 habit_track: data
             }
-            console.log(newHabit)
             habitService.addData(newHabit)
             makeStateNull()
             setShow(false)
