@@ -1,37 +1,39 @@
 body {
-    .card {
+    .main-row {
+        margin: 140px 10px;
+    }
+    .form-card {
         width: fit-content;
         display: flex;
-        flex-direction: column;
         justify-content: center;
-        margin: 250px;
         i {
             font-size: 2rem;
             color: blue;
             cursor: pointer;
-        }
-        .activity_card {
-            .card {
-                width: 35%;
-                .card-title {
-                    color: #f4118c;
-                    font-size: 1.5rem;
-                }
+        } 
+    }
+    .activity-card {
+        .card-title {
+            color: red;
+            font-size: 1.5rem;
+            i {
+                color: lightslategray;
+                cursor: pointer;
+                float: right;
             }
-            .days {
-                margin: 25px 0px;
-                i {
-                    font-size: 1.7rem;
-                    float: right;
-                    color: #9e9e9e;
-                }
-                .btn {
-                    margin: 5px;
-                    color: black;
-                    border-color: white;
-                }
+        }
+        .card-subtitle {
+            color: lightseagreen;
+        }
+        .days {
+            margin-top: 25px;
+            .btn {
+                margin: 5px;
+                color: black;
+                border-color: white;
             }
             .save {
+                margin-top: 10px;
                 color: #fff;
                 background-color: #311B92;
             }

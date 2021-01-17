@@ -1,20 +1,29 @@
-import React, { useRef, useState } from 'react'
-import {Card, Button} from 'react-bootstrap'
+import React, { useState } from 'react'
+import {Card, Col, Button} from 'react-bootstrap'
 import habitService from '../services/habit_services'
 
 const TrackSheet = (props) => {
     const [local_activity, setLocalActivity] = useState([])
-    const saveBtnRef = useRef(null)
-    
-    const handleVisibility = (array) => {
-        setLocalActivity(array)
-        saveBtnRef.current.style.visibility = 'visible'
-    } 
 
-    const handleActivity = (day) => {
+    const handleActivity = (array, that_day) => {
+        if(local_activity.length === 0) {
+            setLocalActivity(array)
+        }
         const temp = [...local_activity]
-        temp[day] = !temp[day]
+        temp.map((day) => {
+            if(day === that_day) {
+                temp[that_day] = !temp[that_day]
+            }
+            temp[that_day] = temp[that_day]
+        })
         setLocalActivity(temp)
+    }
+
+    const handleDelete = (habit_id) => {
+        let confirm_delete = window.confirm('Are you sure to delete this?!')
+        if(confirm_delete) {
+            habitService.deleteData(habit_id)
+        }
     }
 
     const saveChanges = (habit_id) => {
@@ -23,30 +32,33 @@ const TrackSheet = (props) => {
         }
         habitService.updateData(habit_id, changes)
         setLocalActivity([])
-        saveBtnRef.current.style.visibility = 'hidden'
     }
 
     const showHabitActivity = () => props.habit_activity.map((habit, index) => {  
         return (
-            <Card>
-                <Card.Body className="activity_card">
-                    <Card.Title>{habit.habit_name}</Card.Title>
-                    <Card.Subtitle>{habit.habit_month}</Card.Subtitle>
-                    <div className="days">
-                        <i className="material-icons" title="Edit your activities" onClick={() => handleVisibility(habit.habit_track)}>edit</i>
-                    {
-                        habit.habit_track.map((day, index) => {
-                            return (
-                                <Button id={index + 1} style={{ 'background-color': day === true ? 'blue' : '#FFEB3B'}} onClick={() => handleActivity(index)}>{index + 1}</Button>
-                            )
-                        })
-                    }
-                    </div>
-                    <center>
-                        <Button ref={saveBtnRef} style={{visibility: 'hidden'}} className='save' onClick={() => saveChanges(habit.id)}>Save</Button>
-                    </center>
-                </Card.Body>
-            </Card>
+            <Col>
+                <Card className="activity-card" id={index}>
+                    <Card.Body >
+                        <Card.Title>
+                            <span>{habit.habit_name}</span> 
+                            <i className="material-icons" onClick={() => handleDelete(habit.id)}>delete</i>
+                        </Card.Title>
+                        <Card.Subtitle>{habit.habit_month}</Card.Subtitle>
+                        <div className="days">
+                        {
+                            habit.habit_track.map((day, index) => {
+                                return (
+                                    <Button id={index + 1} style={{ 'background-color': day === true ? 'blue' : '#FFEB3B'}} onClick={() => handleActivity(habit.habit_track, index)}>{index + 1}</Button>
+                                )
+                            })
+                        }
+                        <center>
+                            <Button className='save' onClick={() => saveChanges(habit.id)}>Save</Button>
+                        </center>
+                        </div>
+                    </Card.Body>
+                </Card>
+            </Col>
         )
     })
 
