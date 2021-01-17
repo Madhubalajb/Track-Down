@@ -6,15 +6,18 @@ const TrackSheet = (props) => {
     const [local_activity, setLocalActivity] = useState([])
 
     const handleActivity = (array, that_day) => {
+        let temp = []
         if(local_activity.length === 0) {
-            setLocalActivity(array)
+            temp = [...array]
         }
-        const temp = [...local_activity]
-        temp.map((day) => {
-            if(day === that_day) {
-                temp[that_day] = !temp[that_day]
+        else {
+            temp = [...local_activity]
+        }
+        temp.map((day, index) => {
+            if(index === that_day) {
+                temp[index] = !temp[index]
             }
-            temp[that_day] = temp[that_day]
+            temp[index] = temp[index]
         })
         setLocalActivity(temp)
     }
