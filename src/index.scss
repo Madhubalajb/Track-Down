@@ -12,6 +12,9 @@ body {
             cursor: pointer;
         } 
     }
+    .nothing {
+        margin: 70px;
+    }
     .activity-card {
         .card-title {
             color: red;
@@ -24,6 +27,9 @@ body {
         }
         .card-subtitle {
             color: lightseagreen;
+            .count {
+                float: right;
+            }
         }
         .days {
             margin-top: 25px;

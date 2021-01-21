@@ -22,6 +22,20 @@ const TrackSheet = (props) => {
         setLocalActivity(temp)
     }
 
+    const countNumberOfDays = (array) => {
+        let count = 0
+        array.map((day, index) => {
+            if(day) {
+                count++
+            }
+        })
+        return (
+            <>
+            {count}
+            </>
+        )
+    }
+
     const handleDelete = (habit_id) => {
         let confirm_delete = window.confirm('Are you sure to delete this?!')
         if(confirm_delete) {
@@ -46,12 +60,15 @@ const TrackSheet = (props) => {
                             <span>{habit.habit_name}</span> 
                             <i className="material-icons" onClick={() => handleDelete(habit.id)}>delete</i>
                         </Card.Title>
-                        <Card.Subtitle>{habit.habit_month}</Card.Subtitle>
+                        <Card.Subtitle>
+                            <span>{habit.habit_month}</span>
+                            <span className="count">No of days done - {countNumberOfDays(habit.habit_track)}/30</span>
+                        </Card.Subtitle>
                         <div className="days">
                         {
                             habit.habit_track.map((day, index) => {
                                 return (
-                                    <Button id={index + 1} style={{ 'background-color': day === true ? 'blue' : '#FFEB3B'}} onClick={() => handleActivity(habit.habit_track, index)}>{index + 1}</Button>
+                                    <Button id={index + 1} style={{ 'background-color': day === true ? 'turquoise' : '#FFEB3B'}} onClick={() => handleActivity(habit.habit_track, index)}>{index + 1}</Button>
                                 )
                             })
                         }
@@ -67,10 +84,9 @@ const TrackSheet = (props) => {
 
     if(props.habit_activity.length === 0) {
         return (
-            <Card>
-                <Card.Title>Sample</Card.Title>
-                <Card.Subtitle>January</Card.Subtitle>
-            </Card>
+            <div>
+                <center className="nothing"><p>You haven't added anything to track! :(</p></center>
+            </div>
         )
     }
     else {
