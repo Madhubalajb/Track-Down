@@ -62,7 +62,7 @@ const TrackSheet = (props) => {
                         </Card.Title>
                         <Card.Subtitle>
                             <span>{habit.habit_month}</span>
-                            <span className="count">No of days done - {countNumberOfDays(habit.habit_track)}/30</span>
+                            <span className="count">No of days done - {countNumberOfDays(habit.habit_track)}/{habit.habit_track.length}</span>
                         </Card.Subtitle>
                         <div className="days">
                         {
