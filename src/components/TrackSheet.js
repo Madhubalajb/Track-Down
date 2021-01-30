@@ -53,32 +53,30 @@ const TrackSheet = (props) => {
 
     const showHabitActivity = () => props.habit_activity.map((habit, index) => {  
         return (
-            <Col>
-                <Card className="activity-card" id={index}>
-                    <Card.Body >
-                        <Card.Title>
-                            <span>{habit.habit_name}</span> 
-                            <i className="material-icons" onClick={() => handleDelete(habit.id)}>delete</i>
-                        </Card.Title>
-                        <Card.Subtitle>
-                            <span>{habit.habit_month}</span>
-                            <span className="count">No of days done - {countNumberOfDays(habit.habit_track)}/{habit.habit_track.length}</span>
-                        </Card.Subtitle>
-                        <div className="days">
-                        {
-                            habit.habit_track.map((day, index) => {
-                                return (
-                                    <Button id={index + 1} style={{ 'background-color': day === true ? 'turquoise' : '#FFEB3B'}} onClick={() => handleActivity(habit.habit_track, index)}>{index + 1}</Button>
-                                )
-                            })
-                        }
-                        <center>
-                            <Button className='save' onClick={() => saveChanges(habit.id)}>Save</Button>
-                        </center>
-                        </div>
-                    </Card.Body>
-                </Card>
-            </Col>
+            <Card className="activity-card" id={index}>
+                <Card.Body >
+                    <Card.Title>
+                        <span>{habit.habit_name}</span> 
+                        <i className="material-icons" onClick={() => handleDelete(habit.id)}>delete</i>
+                    </Card.Title>
+                    <Card.Subtitle>
+                        <span>{habit.habit_month}</span>
+                        <span className="count">No of days done - {countNumberOfDays(habit.habit_track)}/{habit.habit_track.length}</span>
+                    </Card.Subtitle>
+                    <div className="days">
+                    {
+                        habit.habit_track.map((day, index) => {
+                            return (
+                                <Button id={index + 1} style={{ 'background-color': day === true ? 'turquoise' : '#FFEB3B'}} onClick={() => handleActivity(habit.habit_track, index)}>{index + 1}</Button>
+                            )
+                        })
+                    }
+                    <center>
+                        <Button className='save' onClick={() => saveChanges(habit.id)}>Save</Button>
+                    </center>
+                    </div>
+                </Card.Body>
+            </Card>
         )
     })
 
