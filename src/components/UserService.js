@@ -30,6 +30,15 @@ const UserService = () => {
         setPassword('')
     }
 
+    useEffect(() => {
+        const loggedUserJSON = window.localStorage.getItem('logged-trackDown-User')
+        if(loggedUserJSON) {
+            const user = JSON.parse(loggedUserJSON)
+            setUser(user)
+            habitService.setToken(user.token)
+        }
+    }, [])
+
     const handleLogin = async (event) => {
         event.preventDefault()
         setLoginShow(false)
