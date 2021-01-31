@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Container, Card, Row, Col} from 'react-bootstrap'
 import HabitForm from './HabitForm'
 import TrackSheet from './TrackSheet'
+import UserService from './UserService'
 import habitService from '../services/habit_services'
 
 const Home = () => {
@@ -20,6 +21,7 @@ const Home = () => {
         December: 31 
     }
     const [show, setShow] = useState(false)
+
     const [habitName, setHabitName] = useState('') 
     const [habitMonth, setHabitMonth] = useState('')
     const [habit_activity, setHabitActivity] = useState([])
@@ -29,12 +31,12 @@ const Home = () => {
         .then(data => setHabitActivity(data))
     })
 
-    const handleClose = () => setShow(false)
     const handleShow = () => setShow(true)
+    const handleClose = () => setShow(false)
     const handleHabitName = (event) => setHabitName(event.target.value)
     const handleHabitMonth = (event) => setHabitMonth(event.target.value)
     
-    const makeStateNull = () => {
+    const makeActivityNull = () => {
         setHabitName('')
         setHabitMonth('')
     }
@@ -60,13 +62,15 @@ const Home = () => {
                 habit_track: data
             }
             habitService.addData(newHabit)
-            makeStateNull()
+            makeActivityNull()
             setShow(false)
         }) 
     }
+    
 
     return (
         <Container>
+            <UserService />
             <Row className="main-row">
                 <Col sm={2}>
                     <Card className="form-card">
