@@ -11,7 +11,7 @@ const Signup = (props) => {
                     <Form onSubmit={props.signupSubmit}>
                         <Form.Control type="text" placeholder="Name" onChange={props.name} required/>
                         <Form.Control type="text" placeholder="Username" onChange={props.username} required/>
-                        <Form.Control type="password" placeholder="Password" onChange={props.pwd} required/>
+                        <Form.Control type="password" placeholder="Password" onChange={props.pwd} name="new-password" id="new-password" autoComplete="on" required/>
                         <center><Button type="submit">SignUp</Button></center>
                     </Form>
                 </Modal.Body>
