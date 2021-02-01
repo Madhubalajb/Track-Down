@@ -31,7 +31,7 @@ const updateData = async (habit_id, habit) => {
     const config = {
         headers: {Authorization: token}
     }
-    const response = await axios.put(`${url}/${habit_id}`, habit, config)
+    const response = await axios.patch(`${url}/${habit_id}`, habit, config)
     return response.data
 }
 

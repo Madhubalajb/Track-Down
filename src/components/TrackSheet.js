@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {Card, Col, Button} from 'react-bootstrap'
+import {Card, Button} from 'react-bootstrap'
 import habitService from '../services/habit_services'
 
 const TrackSheet = (props) => {

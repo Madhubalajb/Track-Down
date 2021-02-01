@@ -83,7 +83,7 @@ const UserService = () => {
 
     const logout = () => {
         setUser('')
-        showMessage(<div>Bye {user.username}, will miss you!</div>)
+        showMessage(<div id="snackbar">Bye {user.username}, will miss you!</div>)
         window.localStorage.removeItem('logged-trackDown-User')
         loginService.setToken('')
     }
@@ -103,8 +103,8 @@ const UserService = () => {
         return (
             <div>
                 <Notification msg={message} />
-                <Row>
-                    <b>{user.username}</b>
+                <Row className="afterLogin">
+                    <span className="username">{user.username}</span>
                     <Button onClick={logout}>Logout</Button>
                 </Row>
             </div>

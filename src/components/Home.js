@@ -27,8 +27,12 @@ const Home = () => {
     const [habit_activity, setHabitActivity] = useState([])
 
     useEffect(() => {
-        habitService.getData()
-        .then(data => setHabitActivity(data))
+        const loggedUserJSON = window.localStorage.getItem('logged-trackDown-User')
+        const user = JSON.parse(loggedUserJSON)
+        if(loggedUserJSON) {
+            habitService.getData()
+            .then(habits => setHabitActivity(habits.filter(habit => habit.user.id === user.id)))
+        }
     })
 
     const handleShow = () => setShow(true)

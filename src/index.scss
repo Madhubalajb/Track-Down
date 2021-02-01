@@ -12,8 +12,12 @@ body {
             cursor: pointer;
         } 
     }
-    .nothing {
-        margin: 70px;
+    .afterLogin {
+        margin: 10px;
+    }
+    .username {
+        color: lightslategrey;
+        margin: 5px;
     }
     .login, .signup {
         margin: 20px;
