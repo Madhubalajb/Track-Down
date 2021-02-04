@@ -77,14 +77,16 @@ const Home = () => {
             <UserService />
             <Row className="main-row">
                 <Col sm={2}>
-                    <Card className="form-card">
-                        <Card.Body>
-                            <p>Add a new habit to track</p>
-                            <center>
-                                <i className="material-icons" title="Add Habit" onClick={handleShow}>add_circle</i>
-                            </center>
-                        </Card.Body>
-                    </Card>
+                    <center>
+                        <Card className="form-card">
+                            <Card.Body>
+                                <p>Add a new habit to track</p>
+                                <center>
+                                    <i className="material-icons" title="Add Habit" onClick={handleShow}>add_circle</i>
+                                </center>
+                            </Card.Body>
+                        </Card>
+                    </center>
                     <HabitForm show={show} close={handleClose} habit_name={handleHabitName} habit_month={handleHabitMonth} submit={submitHabit}/>
                 </Col>
                 <Col sm={10}>
