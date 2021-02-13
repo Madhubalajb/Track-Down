@@ -51,6 +51,7 @@ const UserService = () => {
             setUser(user)
             makeUserNull()
             showMessage(<div id="snackbar">Hello {user.username}!!</div>)
+            window.location.reload()
         })
         .catch(error => {
             makeUserNull()
@@ -86,6 +87,7 @@ const UserService = () => {
         showMessage(<div id="snackbar">Bye {user.username}, will miss you!</div>)
         window.localStorage.removeItem('logged-trackDown-User')
         loginService.setToken('')
+        window.location.reload()
     }
 
     if(user === '') {
