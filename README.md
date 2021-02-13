@@ -5,7 +5,7 @@
 ![Track-Down](track-down.gif)
 
 ## Tech Stack
-**FRont End**
+**Front End**
 - React
 - HTML
 - SASS
